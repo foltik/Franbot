@@ -9,7 +9,7 @@ const trim = str => str.toLowerCase().replace(/\s/g, '');
 const banned = [
     [/furr(y|ies)/g, trim, [
         'https://media1.tenor.com/images/d22d04148e843750074fab5a6cc9bc31/tenor.gif',
-        'https://assets.change.org/photos/5/qt/cu/CNqTCubXjaiVAXU-800x450-noPad.jpg?1544566706',
+        'https://assets.change.org/photos/5/qt/cu/CNqTCubXjaiVAXU-800x450-noPad.jpg',
     ]],
     [/fur(suit|sona)/g, trim, [
         'https://i.kym-cdn.com/photos/images/newsfeed/000/995/030/65e.jpg'
