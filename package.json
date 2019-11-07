@@ -1,0 +1,19 @@
+{
+  "name": "franbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foltik/franbot.git"
+  },
+  "author": "Jack Foltz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Foltik/franbot/issues"
+  },
+  "homepage": "https://github.com/Foltik/franbot#readme"
+}
