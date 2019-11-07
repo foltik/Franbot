@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Foltik/franbot/issues"
   },
-  "homepage": "https://github.com/Foltik/franbot#readme"
+  "homepage": "https://github.com/Foltik/franbot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
 }
