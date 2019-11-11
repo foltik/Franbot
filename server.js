@@ -14,7 +14,7 @@ const banned = [
     [/fur(suit|sona)/g, trim, [
         'https://i.kym-cdn.com/photos/images/newsfeed/000/995/030/65e.jpg'
     ]],
-    [/owo(?!r|f)|uwu|awoo|0w0/g, lower, [
+    [/\bowo\b|\bo\s+w\s+o\b|(?<!c|l|h)owo(?!r|f|u)|uwu|\bu\s+w\s+u\b|\ba\s*w\s*o\s*o\b|0\s*w\s*0/g, lower, [
         'https://i.kym-cdn.com/photos/images/facebook/000/910/542/1e8.jpg',
         'https://i.kym-cdn.com/photos/images/original/001/408/772/b08.jpg',
         'https://cdn.dopl3r.com/memes_files/rules-of-the-cool-club-1-no-anime-UPuUO.jpg'
