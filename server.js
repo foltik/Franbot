@@ -25,7 +25,7 @@ enabled = true;
 
 const filter = msg =>
       enabled && banned.map(([regex, pre, imgs]) =>
-          pre(msg.content).match(regex) && msg.channel.send(`<@${msg.author.id}>`, {file: choice(imgs)}));
+          pre(msg.content).match(regex) && msg.reply(choice(imgs)));
 
 const cmds = [
     [/i hate furries/g, msg => {
