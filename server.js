@@ -15,7 +15,7 @@ const banned = [
         'https://i.kym-cdn.com/photos/images/newsfeed/000/995/030/65e.jpg'
     ]],
     [/(b|n)uzzles/g, trim, [
-		'https://cdn131.picsart.com/291896429008211.png?r1024x1024'
+	'https://cdn131.picsart.com/291896429008211.png?r1024x1024'
     ]],
     [/\bowo\b|\bo\s*w\s*o\b|(?<!c)owo(?!r|f|u)|uw+u|\bu\s*w\s*u\b|\ba\s*w\s*o\s*o\b|0\s*w\s*0|(🇴|🅾|⭕)\s*🇼\s*(🇴|🅾|⭕)|🇺\s*🇼\s*🇺|👁\s*w\s*👁|(🅰 |🇦)\s*🇼\s*(🇴|🅾|⭕)\s*(🇴|🅾|⭕)/g, lower, [
         'https://i.kym-cdn.com/photos/images/facebook/000/910/542/1e8.jpg',
