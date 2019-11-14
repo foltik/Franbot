@@ -52,6 +52,8 @@ const scan = msg =>
           msg.content.toLowerCase().match(regex) && fn(msg));
 
 client.on('message', msg => {
+    console.log(`${msg.member.displayName}: ${msg}`);
+
     scan(msg);
     filter(msg);
 });
