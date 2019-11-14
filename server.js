@@ -38,6 +38,9 @@ const cmds = [
     }],
     [/fran ?bot/g, msg => {
         msg.react("❤");
+    }],
+    [/ihadurca/g, msg => {
+        msg.react("😍");
     }]
 ];
 
