@@ -45,13 +45,11 @@ const cmds = [
 ];
 
 const scan = msg =>
-      cmds.some(([regex, fn]) =>
-          msg.content.toLowerCase().match(regex) && (fn(msg), true));
+      cmds.map(([regex, fn]) =>
+          msg.content.toLowerCase().match(regex) && fn(msg));
 
 client.on('message', msg => {
-    if (scan(msg))
-        return;
-
+    scan(msg);
     filter(msg);
 });
 
