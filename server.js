@@ -36,7 +36,7 @@ const cmds = [
         enabled = false;
         msg.reply('As you wish, degenerate.');
     }],
-    [/franbot/g, msg => {
+    [/fran ?bot/g, msg => {
         msg.react("❤");
     }]
 ];
