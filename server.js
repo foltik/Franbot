@@ -35,6 +35,9 @@ const cmds = [
     [/i love furries/g, msg => {
         enabled = false;
         msg.reply('As you wish, degenerate.');
+    }],
+    [/franbot/g, msg => {
+        msg.react("❤");
     }]
 ];
 
