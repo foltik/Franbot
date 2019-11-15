@@ -1,10 +1,45 @@
 require('dotenv').config();
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
+
+
+const mongoose = require('mongoose');
+const schema = mongoose.Schema({
+    _id: {type: String, index: true, unique: true},
+
+    messages: {type: Number, default: 0},
+    mentions: {type: Number, default: 0},
+    reacts: {type: Number, default: 0},
+    emotes: {type: Number, default: 0},
+    words: {type: Number, default: 0},
+
+    mention_usage: {type: Object, default: {}},
+    react_usage: {type: Object, default: {}},
+    emote_usage: {type: Object, default: {}},
+    word_usage: {type: Object, default: {}},
+    channel_usage: {type: Object, default: {}}
+
+}, {minimize: false});
+const User = mongoose.model('User', schema);
+mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true});
+
+let mutex = Promise.resolve();
+const locked = fn => async (...args) => {
+    const unlock = await new Promise(cb => mutex = mutex.then(() => new Promise(cb)));
+    const res = await Promise.resolve(fn(...args));
+    unlock();
+    return res;
+};
+
+const cache = {};
+const save_user = async user => cache[user._id] = await user.save();
+const cache_user = async _id => !cache[_id]
+      && (cache[_id] = await User.findById(_id) || await save_user(new User({_id})));
+const find_user = async _id => (await cache_user(_id), cache[_id]);
+
+
+
 
 const choice = arr => arr[Math.floor(Math.random() * arr.length)];
-
 const lower = str => str.toLowerCase();
 const trim = str => str.toLowerCase().replace(/\s/g, '');
 
@@ -27,10 +62,31 @@ const banned = [
 ];
 
 enabled = true;
-
 const filter = msg =>
       enabled && banned.map(([regex, pre, imgs]) =>
           pre(msg.content).match(regex) && msg.reply(choice(imgs)));
+
+
+
+const analyze_msg = locked(async msg => {
+    const u = await find_user(msg.member.id);
+
+    u.messages++;
+    // ...
+
+    await save_user(u);
+});
+
+const analyze_react = locked(async (react, user) => {
+    const u = await find_user(user.id);
+
+    u.reacts++;
+    // ...
+
+    await save_user(u);
+});
+
+
 
 const cmds = [
     [/i hate furries/g, msg => {
@@ -53,12 +109,20 @@ const scan = msg =>
       cmds.map(([regex, fn]) =>
           msg.content.toLowerCase().match(regex) && fn(msg));
 
+
+
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
 client.on('message', msg => {
-    console.log(`${msg.member.displayName}: ${msg}`);
+    console.log(`#${msg.channel.name} <${msg.member.displayName}>: ${msg}`);
 
     scan(msg);
     filter(msg);
 });
+
+client.on('messageReactionAdd', analyze_react);
+client.on('message', analyze_msg);
 
 client.on('ready', () => console.log(`${client.user.tag} has entered the arena!`));
 
