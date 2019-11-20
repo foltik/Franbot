@@ -115,9 +115,15 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('message', msg => {
-    console.log(`#${msg.channel.name} <${msg.member.displayName}>: ${msg}`);
+    console.log(`#${msg.channel.name} <${msg.member.displayName}>: ${msg.content}`);
 
     scan(msg);
+    filter(msg);
+});
+
+client.on('messageUpdate', (old, msg) => {
+    console.log(`#${msg.channel.name} <${msg.member.displayName}> EDIT: ${old.content} -> ${msg.content}`);
+
     filter(msg);
 });
 
