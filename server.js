@@ -40,8 +40,9 @@ const find_user = async _id => (await cache_user(_id), cache[_id]);
 
 
 const choice = arr => arr[Math.floor(Math.random() * arr.length)];
-const lower = str => str.toLowerCase();
-const trim = str => str.toLowerCase().replace(/\s/g, '');
+const demarkdown = str => str.replace(/\*|_|~/g, '');
+const lower = str => demarkdown(str.toLowerCase());
+const trim = str => demarkdown(str.toLowerCase().replace(/\s/g, ''));
 
 const banned = [
     [/furr(y|ies)/g, trim, [
