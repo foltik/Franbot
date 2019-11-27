@@ -40,9 +40,10 @@ const find_user = async _id => (await cache_user(_id), cache[_id]);
 
 
 const choice = arr => arr[Math.floor(Math.random() * arr.length)];
+const normalize = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const demarkdown = str => str.replace(/\*|_|~/g, '');
-const lower = str => demarkdown(str.toLowerCase());
-const trim = str => demarkdown(str.toLowerCase().replace(/\s/g, ''));
+const lower = str => demarkdown(normalize(str.toLowerCase()));
+const trim = str => demarkdown(normalize(str.toLowerCase().replace(/\s/g, '')));
 
 const banned = [
     [/(cumm|furr)(y|ies)/g, trim, [
