@@ -46,14 +46,14 @@ const lower = str => demarkdown(normalize(str.toLowerCase()));
 const trim = str => demarkdown(normalize(str.toLowerCase().replace(/\s/g, '')));
 
 const banned = [
-    [/(cumm|furr)(y|ies)/g, trim, [
+    [/furr(y|ies)/g, trim, [
         'https://media1.tenor.com/images/d22d04148e843750074fab5a6cc9bc31/tenor.gif',
         'https://assets.change.org/photos/5/qt/cu/CNqTCubXjaiVAXU-800x450-noPad.jpg',
     ]],
     [/fur(suit|sona)/g, trim, [
         'https://i.kym-cdn.com/photos/images/newsfeed/000/995/030/65e.jpg'
     ]],
-    [/(b|n)uz+l[A-z]+/g, trim, [
+    [/((b|n)uz+l|cumm)[A-z]+/g, trim, [
         'https://cdn131.picsart.com/291896429008211.png?r1024x1024'
     ]],
     [/\bowo\b|\bo\s*w\s*o\b|(?<!c)owo(?!r|f|u)|uw+u|\bu\s*w\s*u\b|\ba\s*w\s*o\s*o\b|0\s*w\s*0|(🇴|🅾|⭕)\s*🇼\s*(🇴|🅾|⭕)|🇺\s*🇼\s*🇺|👁\s*w\s*👁|(🅰 |🇦)\s*🇼\s*(🇴|🅾|⭕)\s*(🇴|🅾|⭕)+/g, lower, [
