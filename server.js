@@ -46,7 +46,7 @@ const lower = str => demarkdown(normalize(str.toLowerCase()));
 const trim = str => demarkdown(normalize(str.toLowerCase().replace(/\s/g, '')));
 
 const banned = [
-    [/(cum+|fur+)(y|i.+)/g, trim, [
+    [/(cum+|furr+)(y|i.+)/g, trim, [
         'https://media1.tenor.com/images/d22d04148e843750074fab5a6cc9bc31/tenor.gif',
         'https://assets.change.org/photos/5/qt/cu/CNqTCubXjaiVAXU-800x450-noPad.jpg',
     ]],
